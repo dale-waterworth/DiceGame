@@ -5,25 +5,23 @@ export enum DiceSide {
     ONE = "1", TWO = "2", THREE = "3", FOUR = "4", FIVE = "5", SIX = "6"
 }
 
-const initialState = {
-    side: DiceSide.ONE
-}
-export type DiceState = Readonly<typeof initialState>;
 export type DiceProps = {side?: DiceSide};
 
-export const Dice = ({side}: DiceProps) => {
+export const Dice = (props: DiceProps) => {
 
-    const [dice, setDice] = useState<DiceState>(initialState);
+    const [dice, setDice] = useState<DiceSide>(
+        DiceSide.ONE
+    );
 
     useEffect(() => {
-       if(side){
-           setDice({side});
+       if(props.side){
+           setDice(props.side);
        }
-    }, [side])
+    }, [props.side])
 
     return <>
     <span className="dice-wrapper">
-        {dice.side}
+        {dice}
     </span>
     </>
 }
