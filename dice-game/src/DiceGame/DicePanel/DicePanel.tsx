@@ -1,36 +1,25 @@
-import React, {useEffect, useState} from "react";
-import {Dice, DiceSide} from "./Dice";
+import React, { useEffect, useState} from "react";
+import {Dice, DiceValue} from "./Dice";
+import {DicePanelProps, DicePlayer} from "../types";
 
-export type DicePanelProps = {
-    name:string;
-    score?: number;
-    dice?: DiceSide;
-}
-
-export const DicePanel = (props : DicePanelProps) =>{
-
-    const [dice, setDice] = useState<DiceSide>();
-    const [score, setScore] = useState<number>(0);
+export const DicePanel = (props: DicePanelProps) =>{
+    const [player, setPlayer] = useState<DicePlayer>(props.player);
 
     useEffect(() => {
-        if(props.dice){
-            setDice(props.dice);
+        if(props.player){
+            setPlayer(props.player);
         }
-    }, [props.dice]);
+    }, [props.player]);
 
-    useEffect(() => {
-        if(props.score){
-            setScore(props.score);
-        }
-    }, [props.score]);
+
 
     return <>
        <div>
-           {props.name}
+           {player.name}
        </div>
-        <Dice side={dice}/>
+        <Dice side={player.diceValue}/>
        <div>
-           Wins: {score}
+           Wins: {player.wins}
        </div>
     </>
 }

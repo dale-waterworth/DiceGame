@@ -1,10 +1,10 @@
 import React from 'react';
 import {render, screen} from '@testing-library/react';
 import {DicePanel} from "./DicePanel";
-import {DiceSide} from "./Dice";
+import {DiceValue} from "./Dice";
 
 it('should display default display', () => {
-    render(<DicePanel name={'player 1'}/>);
+    render(<DicePanel player={ {name: 'player 1', wins: 0}}/>);
 
     const nameElement = screen.getByText('player 1');
     expect(nameElement).toBeInTheDocument();
@@ -13,7 +13,7 @@ it('should display default display', () => {
 });
 
 it('should display custom display', () => {
-    render(<DicePanel name={'player 1'} dice={DiceSide.FIVE} score={42}/>);
+    render(<DicePanel player={ {name: 'player 1', diceValue:DiceValue.FIVE, wins:42}} />);
 
     const nameElement = screen.getByText('player 1');
     expect(nameElement).toBeInTheDocument();
