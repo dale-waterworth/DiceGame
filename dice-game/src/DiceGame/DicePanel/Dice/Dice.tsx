@@ -13,12 +13,18 @@ export type DiceProps = { side?: DiceValue };
 export const Dice = (props: DiceProps) => {
 
     const [dice, setDice] = useState(
-        <FontAwesomeIcon size={'3x'} color={'blue'} icon={faDiceOne}/>
+        <>
+            <FontAwesomeIcon size={'3x'} color={'blue'} icon={faDiceOne}/>
+            <span>{DiceValue.ONE}</span>
+        </>
     );
 
     useEffect(() => {
         if (props.side) {
-            setDice(<FontAwesomeIcon size={'3x'} color={'blue'} icon={getIcon(props.side)}/>)
+            setDice(<>
+                <FontAwesomeIcon size={'3x'} color={'blue'} icon={getIcon(props.side)}/>
+                <span>{props.side}</span>
+            </>)
         }
     }, [props.side])
 
