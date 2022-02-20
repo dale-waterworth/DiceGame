@@ -1,0 +1,9 @@
+.dice-panels {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.spin-wrapper {
+    display: flex;
+    justify-content: center;
+}

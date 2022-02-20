@@ -1,6 +1,7 @@
 import React, { useEffect, useState} from "react";
-import {Dice, DiceValue} from "./Dice";
+import {Dice} from "./Dice/Dice";
 import {DicePanelProps, DicePlayer} from "../types";
+import './DicePanel.css';
 
 export const DicePanel = (props: DicePanelProps) =>{
     const [player, setPlayer] = useState<DicePlayer>(props.player);
@@ -14,12 +15,14 @@ export const DicePanel = (props: DicePanelProps) =>{
 
 
     return <>
-       <div>
-           {player.name}
-       </div>
-        <Dice side={player.diceValue}/>
-       <div>
-           Wins: {player.wins}
-       </div>
+      <div className={'dice-panel-wrapper'}>
+          <div>
+              {player.name}
+          </div>
+          <Dice side={player.diceValue}/>
+          <div>
+              Wins: {player.wins}
+          </div>
+      </div>
     </>
 }

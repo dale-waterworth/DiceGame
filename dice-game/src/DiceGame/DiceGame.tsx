@@ -2,6 +2,7 @@ import React, {useReducer, useState} from 'react';
 import {DicePanel} from "./DicePanel/DicePanel";
 import {DiceGameStore, DicePlayer} from "./types";
 import {DiceGameReducer} from "./DiceGameReducer";
+import './DiceGame.css';
 
 export const DiceGame = () => {
 
@@ -21,10 +22,17 @@ export const DiceGame = () => {
     const [gameState, dispatch] = useReducer(DiceGameReducer, initialState)
 
     return <>
-        {gameState.players.map((player, i) => <DicePanel key={i} player={player}/>)}
+        <div className={'dice-panels'}>
+            {gameState.players
+                .map((player, i) => <DicePanel key={i} player={player}/>)}
+        </div>
 
-        <div>
-            <button onClick={() => dispatch({action: 'spin'})}>Spin</button>
+        <div className={'spin-wrapper'}>
+            <div>
+                <button onClick={() => dispatch({action: 'spin'})}>
+                    Spin
+                </button>
+            </div>
         </div>
 
     </>

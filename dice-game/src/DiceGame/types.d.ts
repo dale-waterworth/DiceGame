@@ -1,4 +1,4 @@
-import {DiceValue} from "./DicePanel/Dice";
+import {DiceValue} from "./DicePanel/Dice/Dice";
 
 export type DicePlayer = {
     name:string;
@@ -14,6 +14,6 @@ export interface DiceGameStore {
     players: DicePlayer[];
 }
 
-export interface GameAction {
+export interface DiceGameAction {
     action: 'spin'
 }

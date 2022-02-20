@@ -1,9 +1,9 @@
-import {DiceGameStore, GameAction} from "./types";
+import {DiceGameStore, DiceGameAction} from "./types";
 import {DiceSpinner} from "./DiceSpinner";
 
 export const DiceGameReducer = (
     state: DiceGameStore,
-    action: GameAction
+    action: DiceGameAction
 ): DiceGameStore => {
 
     const newState = {
@@ -16,18 +16,24 @@ export const DiceGameReducer = (
 const spin = (state: DiceGameStore): DiceGameStore => {
     const diceRolls = Array.from(Array(state.players.length), () => DiceSpinner())
 
-    const winner = isDraw(diceRolls) ? null : diceRolls.indexOf(Math.max(...diceRolls));
+    const winningPlayer = isDraw(diceRolls) ? null : diceRolls.indexOf(Math.max(...diceRolls));
 
     const players = state.players
         .map((player, i) => {
             player.diceValue = diceRolls[i];
-            if (winner != null && winner === i) {
+
+            if (playerIsWinner(winningPlayer, i)) {
                 player.wins++;
             }
+
             return player;
         });
 
     return {...state, ...players};
+}
+
+const playerIsWinner = (winningPlayer: null | number, i: number) => {
+    return winningPlayer != null && winningPlayer === i;
 }
 
 const isDraw = (numbers: number[]) => {
