@@ -56,3 +56,5 @@ Maybe use a styled component for the dice
 Improve setting the dice icon and passing in the value.
 
 I've left the dice value in as the tests would need to be updated to test the correct icon
+
+![Image of Game](https://github.com/dale-waterworth/DiceGame/blob/master/dice-game/docs/img.png)
